@@ -1,6 +1,6 @@
 ---
 # Shared docker variable
-docker_data_dir: /data
+docker_data_dir: /data/docker
 docker_external_network: frontend
 docker_external_network_subnet: 192.168.90.0/24
 docker_internal_network: backend
