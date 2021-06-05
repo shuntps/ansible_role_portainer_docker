@@ -1,0 +1,5 @@
+---
+- name: Stop "{{ portainer_name }}" container
+  community.docker.docker_container:
+    name: "{{ portainer_name }}"
+    state: absent

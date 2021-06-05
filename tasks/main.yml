@@ -1,0 +1,6 @@
+---
+- include_tasks: start.yml
+  when: portainer_enabled == "true"
+
+- include_tasks: stop.yml
+  when: portainer_enabled == "false"

@@ -1,0 +1,24 @@
+---
+# Shared docker variable
+docker_data_dir: /data
+docker_external_network: frontend
+docker_external_network_subnet: 192.168.90.0/24
+docker_internal_network: backend
+docker_domain: example.com
+
+# General
+portainer_enabled: "false"
+portainer_name: portainer
+portainer_version: "latest"
+portainer_restart_policy: unless-stopped
+portainer_recreate: "false"
+
+# Directories
+portainer_data_dir: "{{ docker_data_dir }}/{{ portainer_container_name }}"
+
+# Network
+portainer_available_externally: "false"
+portainer_port: "9000"
+portainer_svc_port: "9000"
+portainer_network_mode: "{{ docker_internal_network }}"
+portainer_domain: "{{ docker_domain }}"

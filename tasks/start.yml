@@ -1,0 +1,48 @@
+---
+- name: Create "{{ portainer_name }}" directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ portainer_data_dir }}"
+
+- name: Ensures {{ docker_external_network }} network exists
+  community.docker.docker_network:
+    name: "{{ docker_external_network }}"
+    driver: "bridge"
+    ipam_config:
+      - subnet: "{{ docker_external_network_subnet }}"
+  when: portainer_available_externally == "true"
+
+- name: Ensures {{ docker_internal_network }} network exists
+  community.docker.docker_network:
+    name: "{{ docker_internal_network }}"
+    driver: "bridge"
+  when: portainer_available_externally == "false"
+
+- name: Start "{{ portainer_name }}" container
+  community.docker.docker_container:
+    name: "{{ portainer_name }}"
+    image: "portainer/portainer-ce:{{ portainer_version }}"
+    restart_policy: "{{ portainer_restart_policy }}"
+    recreate: "{{ portainer_recreate }}"
+    pull: "true"
+    volumes:
+      - "{{ portainer_data_dir }}:/data:rw"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    ports:
+      - "{{ portainer_port }}:9000"
+    networks:
+      - name: "{{ portainer_network_mode }}"
+    networks_cli_compatible: "true"
+    labels:
+      traefik.enable: "{{ portainer_available_externally }}"
+      ## HTTP Routers
+      traefik.http.routers.portainer-rtr.entrypoints: https
+      traefik.http.routers.portainer-rtr.rule: Host(`{{ portainer_name }}.{{ portainer_domain }}`)
+      ## Middlewares
+      traefik.http.routers.portainer-rtr.middlewares: chain-oauth@file
+      ## HTTP Services
+      traefik.http.routers.portainer-rtr.service: portainer-svc
+      traefik.http.services.portainer-svc.loadbalancer.server.port: "{{ portainer_svc_port }}"
