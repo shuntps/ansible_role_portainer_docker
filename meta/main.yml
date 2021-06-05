@@ -18,5 +18,4 @@ galaxy_info:
     - docker
     - portainer
 
-dependencies:
-  - community.docker
+dependencies: []
