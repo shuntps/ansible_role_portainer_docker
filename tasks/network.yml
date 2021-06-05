@@ -1,0 +1,14 @@
+---
+- name: Ensures {{ docker_external_network }} network exists
+  community.docker.docker_network:
+    name: "{{ docker_external_network }}"
+    driver: "bridge"
+    ipam_config:
+      - subnet: "{{ docker_external_network_subnet }}"
+  when: portainer_available_externally == "true"
+
+- name: Ensures {{ docker_internal_network }} network exists
+  community.docker.docker_network:
+    name: "{{ docker_internal_network }}"
+    driver: "bridge"
+  when: portainer_available_externally == "false"
