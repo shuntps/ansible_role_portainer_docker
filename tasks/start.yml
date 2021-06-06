@@ -21,7 +21,7 @@
       - "{{ portainer_port }}:9000"
     networks:
       - name: "{{ portainer_network_mode }}"
-    purge_networks: "yes"
+    purge_networks: "true"
     networks_cli_compatible: "true"
     labels:
       traefik.enable: "{{ portainer_available_externally }}"
