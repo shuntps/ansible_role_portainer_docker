@@ -2,7 +2,7 @@
 galaxy_info:
   author: Shunt
   description: Portainer for Docker
-  company: SHTLab
+  license: "license (BSD, MIT)"
   min_ansible_version: 2.9
   platforms:
   - name: EL
