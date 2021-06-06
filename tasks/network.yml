@@ -11,4 +11,6 @@
   community.docker.docker_network:
     name: "{{ docker_internal_network }}"
     driver: "bridge"
+    ipam_config:
+      - subnet: "{{ docker_internal_network_subnet }}"
   when: portainer_available_externally == "false"
