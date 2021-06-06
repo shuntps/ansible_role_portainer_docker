@@ -6,8 +6,6 @@
   with_items:
     - "{{ portainer_data_dir }}"
 
-- include_tasks: network.yml
-
 - name: Start "{{ portainer_name }}" container
   community.docker.docker_container:
     name: "{{ portainer_name }}"
