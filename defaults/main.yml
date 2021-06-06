@@ -14,7 +14,7 @@ portainer_restart_policy: unless-stopped
 portainer_recreate: "false"
 
 # Directories
-portainer_data_dir: "{{ docker_data_dir }}/{{ portainer_container_name }}"
+portainer_data_dir: "{{ docker_data_dir }}/{{ portainer_name }}"
 
 # Network
 portainer_available_externally: "false"
