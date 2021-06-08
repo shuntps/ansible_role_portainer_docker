@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Shunt
-  description: Portainer for Docker
+  description: Portainer for Docker and Traefik
   license: "license (BSD, MIT)"
   min_ansible_version: 2.9
   platforms:
@@ -17,5 +17,6 @@ galaxy_info:
   galaxy_tags:
     - docker
     - portainer
+    - traefik
 
 dependencies: []
