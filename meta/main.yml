@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: sht_portainer_docker
+  role_name: portainer_docker
   author: Shunt
   description: Portainer for Docker and Traefik
   license: "license (BSD, MIT)"
