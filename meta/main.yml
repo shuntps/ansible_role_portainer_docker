@@ -1,9 +1,10 @@
 ---
 galaxy_info:
   role_name: portainer_docker
+  description: Role to install Portainer inside Docker container and configure Traefik
   author: Shunt
-  description: Portainer for Docker and Traefik
-  license: "license (BSD, MIT)"
+  compagny: SHT Solutions
+  license: license (BSD, MIT)
   min_ansible_version: 2.9
   platforms:
   - name: EL
@@ -16,8 +17,12 @@ galaxy_info:
     versions:
     - all
   galaxy_tags:
+    - development
     - docker
     - portainer
     - traefik
 
 dependencies: []
+
+collections:
+  - community.docker
